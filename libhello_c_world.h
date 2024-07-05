@@ -3,6 +3,10 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+typedef struct RustString {
+  const char *ptr;
+} RustString;
+
 const uint8_t *get_string(uint8_t end);
 
 /**
@@ -12,4 +16,6 @@ const uint8_t *get_string(uint8_t end);
  * The input pointer needs to follow the same safety requirements
  * as Rust 'std::ffi::CStr::from_ptr'
  */
-const char *to_uppercase(const char *input);
+struct RustString to_uppercase(const char *input);
+
+void free_rust_string(struct RustString string);
